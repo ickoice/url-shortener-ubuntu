@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 var app = express();
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/url-shortener';
+var mongoDB = 'mongodb://localhost/url-shortener';
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //Get the default connection
@@ -116,6 +116,6 @@ app.use((error, req, res, next) => {
 
 const port = process.env.PORT || 1337;
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Listening at http://localhost:${port}`);
 });
