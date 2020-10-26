@@ -4,11 +4,13 @@ const app = new Vue({
     data: {
         url: '',
         slug: '',
-        created: null
+        created: null,
+        error: ''
     },
     methods: {
         async createUrl() {
-            const response = await fetch('/url', {
+            this.slug = this.slug.toLowerCase();
+	    const response = await fetch('/url', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json',

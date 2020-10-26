@@ -42,13 +42,13 @@ var schema = mongoose.Schema({
   
 var Model = mongoose.model("model", schema, "myCollection");
 
-app.get('/:id', (req, res) => {
+app.get('/redirect/:id', async (req, res) => {
 
     const {id: slug} = req.params;
     
     try {
        
-        Model.find({ 'slug': slug })
+        await Model.find({ 'slug': slug })
             .then(url=> {
                 console.log(url);
 
@@ -61,9 +61,9 @@ app.get('/:id', (req, res) => {
                 console.log("now here");
                 res.redirect(`/?error=${slug} not found what the fuck`).end();
             });
-            // .catch(
-            //     res.redirect(`/?error=${slug} not found`).end()
-            // ); 
+            //.catch(
+              //  res.redirect(`/?error=${slug} not found`).end()
+            //); 
 
     } catch (error) {
 

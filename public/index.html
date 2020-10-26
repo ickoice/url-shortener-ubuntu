@@ -14,18 +14,19 @@
         <h1>Short urls - by ickomusic</h1>
     </header>
     <main id="app">
-        <form @submit.prevent="createUrl()">
-            <label for="url">Url</label>
-            <input id="url" name="url" v-model="url"/>
+        <form class="form"  @submit.prevent="createUrl()">
+            <div v-if="error" class="error">
+              {{ error }}
+            </div>
+            <input class="input" type="text" id="url" placeholder="enter a url" name="url" v-model="url"/>
 
-            <label for="slug">Slug</label>
-            <input id="slug" name="slug" v-model="slug" />
-            <button type="submit">Create</button>
+            <input class="input" type="text" id="slug" placeholder="enter a slug" name="slug" v-model="slug" />
+            <button type="submit" class="create">create</button>
         </form>
         <pre v-if="created">
-            <h4>Here's your link:</h4>
-            <a :href="slug" target="_blank">{{window.location.href + slug}}</a>
-            
+            <p class="created">Your short url is: 
+            <a :href="'redirect/' + slug" target="_blank">{{window.location.href + "redirect/" + slug}}</a>
+            </p>
         </pre>
     </main>
     <script src="vue.min.js"></script>
